@@ -1,5 +1,11 @@
 # Textmate Bundle for Node.JS
 
+## 修改点
+
+* 新版本的Textmate应该将插件拷贝到 `cd "~/Library/Application Support/TextMate/Managed/Bundles/"`
+* 修改了一些代码支持新版本的NodeJS。
+* 将输出的内容输出到新窗口里面，并且使用语法标注出来。
+
 ## Common commands and short-cuts
 
 Important: Change your current grammar to "JavaScript Node" (short cut: Shift+Ctrl+Alt+N)

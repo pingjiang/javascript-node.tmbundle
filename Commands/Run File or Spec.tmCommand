@@ -47,12 +47,24 @@ if(process.env.TM_FILENAME.match(/(.*)spec\.js/)) {
 } else {
   var spawn = require('child_process').spawn;
   var script = spawn("node", [process.env.TM_FILEPATH]);
+  
+  sys.puts('&lt;!doctype html&gt; &lt;html lang="zh"&gt; &lt;head&gt; &lt;meta charset="UTF-8" /&gt; &lt;title&gt;NodeJS Result&lt;/title&gt;');
+  sys.puts('&lt;style type="text/css" rel="stylesheet"&gt;');
+  sys.puts('code#nodejs_result pre { margin: 2px 0px 2px 10px; font: 12px "Courier New" }');
+  sys.puts('&lt;/style&gt;');
+  sys.puts('&lt;/head&gt; &lt;body&gt; &lt;code id="nodejs_result"&gt; &lt;pre&gt;');
+  
   script.stdout.on("data", function(data) {
     if (data !== null) { sys.puts(data); }
   });
   script.stderr.on("data", function(data) {
     if (data !== null) { sys.puts("ERROR: " + data); }
   });
+  
+  script.on('close', function (code) {
+  	sys.puts('&lt;/pre&gt; &lt;/code&gt; &lt;b&gt;child process exited with code ' + code + '&lt;/b&gt; &lt;/body&gt; &lt;/html&gt;');
+  });
+  
 }
 </string>
 	<key>input</key>
@@ -61,10 +73,12 @@ if(process.env.TM_FILENAME.match(/(.*)spec\.js/)) {
 	<string>@r</string>
 	<key>name</key>
 	<string>Run File or Spec</string>
-	<key>output</key>
-	<string>showAsTooltip</string>
+    <key>outputFormat</key>
+    <string>html</string>
+    <key>outputLocation</key>
+    <string>newWindow</string>
 	<key>scope</key>
-	<string>source.js.node</string>
+	<string>source.js</string>
 	<key>uuid</key>
 	<string>5ECAB6F6-77CD-4A15-A646-BE4B01B3944F</string>
 </dict>
